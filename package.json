@@ -25,7 +25,8 @@
     "generator-fountain-eslint": "^0.0.1",
     "generator-fountain-browsersync": "^0.0.1",
     "generator-fountain-karma": "^0.0.1",
-    "generator-fountain-webpack": "^0.0.1"
+    "generator-fountain-webpack": "^0.0.1",
+    "generator-fountain-systemjs": "^0.0.1"
   },
   "devDependencies": {
     "gulp": "gulpjs/gulp#4.0",
