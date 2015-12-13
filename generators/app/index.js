@@ -70,10 +70,10 @@ module.exports = fountain.Base.extend({
   },
 
   composing: function () {
-    this.composeWith('fountain-eslint', { options: this.props });
     this.composeWith('fountain-browsersync', { options: this.props });
     this.composeWith('fountain-karma', { options: this.props });
     this.composeWith(`fountain-${this.props.modules}`, { options: this.props });
+    this.composeWith('fountain-eslint', { options: this.props });
   },
 
   writing: function () {
