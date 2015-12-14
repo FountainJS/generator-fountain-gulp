@@ -21,13 +21,13 @@
   ],
   "dependencies": {
     "lodash": "^3.10.1",
-    "fountain-generator": "^0.0.1",
-    "generator-fountain-eslint": "^0.0.1",
-    "generator-fountain-browsersync": "^0.0.1",
-    "generator-fountain-karma": "^0.0.1",
-    "generator-fountain-webpack": "^0.0.1",
-    "generator-fountain-systemjs": "^0.0.1",
-    "generator-fountain-inject": "^0.0.1"
+    "fountain-generator": "^0.1.0",
+    "generator-fountain-eslint": "^0.1.0",
+    "generator-fountain-browsersync": "^0.1.0",
+    "generator-fountain-karma": "^0.1.0",
+    "generator-fountain-webpack": "^0.1.0",
+    "generator-fountain-systemjs": "^0.1.0",
+    "generator-fountain-inject": "^0.1.0"
   },
   "devDependencies": {
     "gulp": "gulpjs/gulp#4.0",
