@@ -70,10 +70,18 @@ module.exports = fountain.Base.extend({
   },
 
   composing: function () {
-    this.composeWith('fountain-browsersync', { options: this.props });
-    this.composeWith('fountain-karma', { options: this.props });
-    this.composeWith(`fountain-${this.props.modules}`, { options: this.props });
-    this.composeWith('fountain-eslint', { options: this.props });
+    this.composeWith('fountain-browsersync', { options: this.props }, {
+      local: require.resolve('generator-fountain-browsersync/generators/app')
+    });
+    this.composeWith('fountain-karma', { options: this.props }, {
+      local: require.resolve('generator-fountain-karma/generators/app')
+    });
+    this.composeWith(`fountain-${this.props.modules}`, { options: this.props }, {
+      local: require.resolve(`generator-fountain-${this.props.modules}/generators/app`)
+    });
+    this.composeWith('fountain-eslint', { options: this.props }, {
+      local: require.resolve('generator-fountain-eslint/generators/app')
+    });
   },
 
   writing: function () {
