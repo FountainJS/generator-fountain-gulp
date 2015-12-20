@@ -1,5 +1,6 @@
 const _ = require('lodash');
-var fountain = require('fountain-generator');
+const fountain = require('fountain-generator');
+const conf = require('./conf');
 
 module.exports = fountain.Base.extend({
   prompting: function () {
@@ -77,18 +78,10 @@ module.exports = fountain.Base.extend({
   },
 
   writing: function () {
-    if (this.props.modules === 'inject') {
-      this.props.compileTask = `'inject'`;
-    } else if (this.props.modules === 'webpack') {
-      this.props.compileTask = `gulp.parallel('scripts:watch', 'styles')`;
-    } else if (this.props.modules === 'systemjs') {
-      this.props.compileTask = `gulp.parallel('scripts', 'styles')`;
-    }
-
-    this.fs.copyTpl(
-      this.templatePath('gulpfile.js'),
-      this.destinationPath('gulpfile.js'),
-      this.props
+    this.copyTemplate(
+      'gulpfile.js',
+      'gulpfile.js',
+      conf(this.props)
     );
 
     this.fs.copyTpl(
