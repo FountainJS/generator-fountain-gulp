@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  *  This file contains the variables used in other gulp files
  *  which defines tasks
@@ -6,6 +8,7 @@
  *  of the tasks
  */
 
+const path = require('path');
 const gutil = require('gulp-util');
 
 /**
@@ -17,6 +20,14 @@ exports.paths = {
   tmp: '.tmp',
   e2e: 'e2e'
 };
+
+exports.path = {};
+for (let pathName in exports.paths) {
+  exports.path[pathName] = function pathJoin() {
+    const args = [exports.paths[pathName]].concat(Array.prototype.slice.call(arguments));
+    return path.join.apply(this, args);
+  }
+}
 
 if (process.env.CI === 'true') {
   exports.paths = {
