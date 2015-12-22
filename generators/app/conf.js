@@ -44,12 +44,16 @@ module.exports = function gulpfileConf(generatorProps) {
     props.gulpFiles.push('gulp_tasks/scripts.js');
   }
 
+  if (props.modules === 'systemjs') {
+    props.gulpFiles.push('gulp_tasks/systemjs.js');
+  }
+
   if (props.modules === 'webpack') {
     props.buildTask = series('other', 'webpack:dist');
   } else if (props.modules === 'inject') {
     props.buildTask = series('inject', 'other', 'build');
   } else if (props.modules === 'systemjs') {
-    props.buildTask = series(parallel('scripts', 'styles'), 'other', 'build');
+    props.buildTask = series(parallel('systemjs', 'systemjs:html', 'styles', 'other'), 'build');
   }
 
   if (props.modules === 'inject') {
@@ -57,7 +61,7 @@ module.exports = function gulpfileConf(generatorProps) {
   } else if (props.modules === 'webpack') {
     props.serveTask = series(parallel('webpack:watch', 'styles'), 'watch', 'browsersync');
   } else if (props.modules === 'systemjs') {
-    props.serveTask = series(parallel('scripts:watch', 'styles'), 'watch', 'browsersync');
+    props.serveTask = series(parallel('scripts', 'styles'), 'watch', 'browsersync');
   }
 
   if (props.modules === 'inject') {
