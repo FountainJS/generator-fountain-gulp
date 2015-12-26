@@ -1,5 +1,3 @@
-const path = require('path');
-
 const gulp = require('gulp');
 const filter = require('gulp-filter');
 const useref = require('gulp-useref');
@@ -10,49 +8,33 @@ const minifyCss = require('gulp-minify-css');
 const minifyHtml = require('gulp-minify-html');
 const sourcemaps = require('gulp-sourcemaps');
 const uglifySaveLicense = require('uglify-save-license');
+<% if (framework === 'angular1' && modules === 'inject') { -%>
+const inject = require('gulp-inject');
+<% } -%>
 <% if (framework === 'angular1') { -%>
 const ngAnnotate = require('gulp-ng-annotate');
-const angularTemplatecache = require('gulp-angular-templatecache');
 <% } -%>
 
 const conf = require('../conf/gulp.conf');
 
-<% if (framework === 'angular1') { -%>
-gulp.task('build', gulp.series(partials, build));
-
-function partials() {
-  return gulp.src(pathsJoin(conf.paths.src, '/app/**/*.html'))
-    .pipe(minifyHtml({
-      empty: true,
-      spare: true,
-      quotes: true
-    }))
-    .pipe(angularTemplatecache('templateCacheHtml.js', {
-      module: 'gulpAngular',
-      root: 'app'
-    }))
-    .pipe(gulp.dest(conf.paths.tmp));
-}
-<% } else { -%>
 gulp.task('build', build);
-<% } -%>
 
 function build() {
-<% if (framework === 'angular1') { -%>
-  const partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/templateCacheHtml.js'), { read: false });
+<% if (framework === 'angular1' && modules === 'inject') { -%>
+  const partialsInjectFile = gulp.src(conf.path.tmp('templateCacheHtml.js'), { read: false });
   const partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',
     ignorePath: conf.paths.tmp,
     addRootSlash: false
   };
-<% } -%>
 
+<% } -%>
   const htmlFilter = filter('*.html', { restore: true });
   const jsFilter = filter('**/*.js', { restore: true });
   const cssFilter = filter('**/*.css', { restore: true });
 
-  return gulp.src(path.join(conf.paths.tmp, '/index.html'))
-<% if (framework === 'angular1') { -%>
+  return gulp.src(conf.path.tmp('/index.html'))
+<% if (framework === 'angular1' && modules === 'inject') { -%>
     .pipe(inject(partialsInjectFile, partialsInjectOptions))
 <% } -%>
     .pipe(useref())
@@ -80,5 +62,5 @@ function build() {
       conditionals: true
     }))
     .pipe(htmlFilter.restore)
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+    .pipe(gulp.dest(conf.path.dist()));
 }

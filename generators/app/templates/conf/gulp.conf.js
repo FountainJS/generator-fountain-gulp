@@ -11,6 +11,10 @@
 const path = require('path');
 const gutil = require('gulp-util');
 
+<% if (framework === 'angular1') { -%>
+exports.ngModule = 'app';
+<% } -%>
+
 /**
  *  The main paths of your project handle these with care
  */
@@ -24,8 +28,10 @@ exports.paths = {
 exports.path = {};
 for (let pathName in exports.paths) {
   exports.path[pathName] = function pathJoin() {
-    const args = [exports.paths[pathName]].concat(Array.prototype.slice.call(arguments));
-    return path.join.apply(this, args);
+    const pathValue = exports.paths[pathName];
+    const funcArgs = Array.prototype.slice.call(arguments);
+    const joinArgs = [pathValue].concat(funcArgs);
+    return path.join.apply(this, joinArgs);
   }
 }
 

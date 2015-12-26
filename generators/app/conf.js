@@ -10,7 +10,7 @@ function series() {
 function parallel() {
   const array = [];
   array.push.apply(array, arguments);
-  array.type = 'series';
+  array.type = 'parallel';
   return array;
 }
 
@@ -27,7 +27,6 @@ module.exports = function gulpfileConf(generatorProps) {
 
   props.gulpFiles = [
     'gulp_tasks/misc.js',
-    'gulp_tasks/build.js',
     'gulp_tasks/styles.js',
     'gulp_tasks/browsersync.js',
     'gulp_tasks/karma.js',
@@ -41,19 +40,30 @@ module.exports = function gulpfileConf(generatorProps) {
   if (props.modules === 'webpack') {
     props.gulpFiles.push('gulp_tasks/webpack.js');
   } else {
-    props.gulpFiles.push('gulp_tasks/scripts.js');
+    props.gulpFiles.push(
+      'gulp_tasks/build.js',
+      'gulp_tasks/scripts.js'
+    );
   }
 
   if (props.modules === 'systemjs') {
     props.gulpFiles.push('gulp_tasks/systemjs.js');
   }
 
+  if (props.framework === 'angular1') {
+    props.gulpFiles.push('gulp_tasks/partials.js');
+  }
+
   if (props.modules === 'webpack') {
-    props.buildTask = series('other', 'webpack:dist');
+    props.buildTask = series(parallel('other', 'webpack:dist'));
   } else if (props.modules === 'inject') {
-    props.buildTask = series('inject', 'other', 'build');
+    props.buildTask = series(parallel('inject', 'other'), 'build');
   } else if (props.modules === 'systemjs') {
     props.buildTask = series(parallel('systemjs', 'systemjs:html', 'styles', 'other'), 'build');
+  }
+
+  if (props.framework === 'angular1') {
+    props.buildTask.unshift('partials');
   }
 
   if (props.modules === 'inject') {

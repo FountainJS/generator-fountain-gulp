@@ -41,7 +41,8 @@ module.exports = fountain.Base.extend({
           devDependencies: {
             'gulp-angular-filesort': '^1.1.1',
             'gulp-angular-templatecache': '^1.8.0',
-            'gulp-ng-annotate': '^1.1.0'
+            'gulp-ng-annotate': '^1.1.0',
+            'gulp-insert': '^0.5.0'
           }
         });
       }
@@ -92,9 +93,31 @@ module.exports = fountain.Base.extend({
       conf(this.props)
     );
 
-    this.fs.copyTpl(
-      this.templatePath('gulp_tasks'),
-      this.destinationPath('gulp_tasks'),
+    if (this.props.modules !== 'webpack') {
+      this.copyTemplate(
+        'gulp_tasks/build.js',
+        'gulp_tasks/build.js',
+        this.props
+      );
+    }
+
+    this.copyTemplate(
+      'gulp_tasks/misc.js',
+      'gulp_tasks/misc.js',
+      this.props
+    );
+
+    if (this.props.framework === 'angular1') {
+      this.copyTemplate(
+        'gulp_tasks/partials.js',
+        'gulp_tasks/partials.js',
+        this.props
+      );
+    }
+
+    this.copyTemplate(
+      'gulp_tasks/styles.js',
+      'gulp_tasks/styles.js',
       this.props
     );
   },
