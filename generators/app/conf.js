@@ -69,7 +69,7 @@ module.exports = function gulpfileConf(generatorProps) {
   if (props.modules === 'inject') {
     props.serveTask = series('inject', 'watch', 'browsersync');
   } else if (props.modules === 'webpack') {
-    props.serveTask = series(parallel('webpack:watch', 'styles'), 'watch', 'browsersync');
+    props.serveTask = series('webpack:watch', 'watch', 'browsersync');
   } else if (props.modules === 'systemjs') {
     props.serveTask = series(parallel('scripts', 'styles'), 'watch', 'browsersync');
   }

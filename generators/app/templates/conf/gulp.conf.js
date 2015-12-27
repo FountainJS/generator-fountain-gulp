@@ -13,8 +13,8 @@ const gutil = require('gulp-util');
 
 <% if (framework === 'angular1') { -%>
 exports.ngModule = 'app';
-<% } -%>
 
+<% } -%>
 /**
  *  The main paths of your project handle these with care
  */

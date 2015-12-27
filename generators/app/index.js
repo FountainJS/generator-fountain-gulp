@@ -99,6 +99,12 @@ module.exports = fountain.Base.extend({
         'gulp_tasks/build.js',
         this.props
       );
+
+      this.copyTemplate(
+        'gulp_tasks/styles.js',
+        'gulp_tasks/styles.js',
+        this.props
+      );
     }
 
     this.copyTemplate(
@@ -114,12 +120,6 @@ module.exports = fountain.Base.extend({
         this.props
       );
     }
-
-    this.copyTemplate(
-      'gulp_tasks/styles.js',
-      'gulp_tasks/styles.js',
-      this.props
-    );
   },
 
   installing: function () {
