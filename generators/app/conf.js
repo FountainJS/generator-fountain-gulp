@@ -1,3 +1,6 @@
+/* eslint prefer-spread: 0 */
+'use strict';
+
 const _ = require('lodash');
 
 function series() {
@@ -15,11 +18,13 @@ function parallel() {
 }
 
 function gulpTasksToString(tasks) {
+  let result;
   if (_.isArray(tasks)) {
-    return `gulp.${tasks.type}(${tasks.map(gulpTasksToString).join(', ')})`;
+    result = `gulp.${tasks.type}(${tasks.map(gulpTasksToString).join(', ')})`;
   } else {
-    return `'${tasks}'`;
+    result = `'${tasks}'`;
   }
+  return result;
 }
 
 module.exports = function gulpfileConf(generatorProps) {

@@ -3,18 +3,18 @@ const fountain = require('fountain-generator');
 const conf = require('./conf');
 
 module.exports = fountain.Base.extend({
-  prompting: function () {
+  prompting() {
     this.fountainPrompting();
   },
 
   configuring: {
-    package: function () {
-      var pkg = {
+    pkg() {
+      const pkg = {
         devDependencies: {
           'babel-core': '^6.2.0',
           'babel-preset-es2015': '^6.1.18',
-          del: '^2.0.2',
-          gulp: 'gulpjs/gulp#4.0',
+          'del': '^2.0.2',
+          'gulp': 'gulpjs/gulp#4.0',
           'gulp-autoprefixer': '^3.1.0',
           'gulp-filter': '^3.0.1',
           'gulp-flatten': '^0.2.0',
@@ -58,7 +58,7 @@ module.exports = fountain.Base.extend({
       this.mergeJson('package.json', pkg);
     },
 
-    gulp: function () {
+    gulp() {
       this.fs.copyTpl(
         this.templatePath('conf'),
         this.destinationPath('conf'),
@@ -66,12 +66,12 @@ module.exports = fountain.Base.extend({
       );
     },
 
-    babel: function () {
+    babel() {
       this.mergeJson('.babelrc', { presets: ['es2015'] });
     }
   },
 
-  composing: function () {
+  composing() {
     this.composeWith('fountain-browsersync', { options: this.props }, {
       local: require.resolve('generator-fountain-browsersync/generators/app')
     });
@@ -84,9 +84,14 @@ module.exports = fountain.Base.extend({
     this.composeWith('fountain-eslint', { options: this.props }, {
       local: require.resolve('generator-fountain-eslint/generators/app')
     });
+    if (this.props.js === 'typescript') {
+      this.composeWith('fountain-tslint', { options: this.props }, {
+        local: require.resolve('generator-fountain-tslint/generators/app')
+      });
+    }
   },
 
-  writing: function () {
+  writing() {
     this.copyTemplate(
       'gulpfile.js',
       'gulpfile.js',
@@ -122,7 +127,7 @@ module.exports = fountain.Base.extend({
     }
   },
 
-  installing: function () {
+  installing() {
     this.npmInstall();
   }
 });

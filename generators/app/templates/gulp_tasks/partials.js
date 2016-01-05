@@ -16,12 +16,22 @@ function partials() {
       spare: true,
       quotes: true
     }))
-    .pipe(angularTemplatecache('templateCacheHtml.js', {
+    .pipe(angularTemplatecache('templateCacheHtml.<%- js === 'typescript' ? 'ts' : 'js' %>', {
       module: conf.ngModule,
+<% if (modules !== 'systemjs') { -%>
       root: 'app'
+<% } else { -%>
+      root: 'src/app'
+<% } -%>
     }))
 <% if (modules !== 'inject') { -%>
+<%   if (js === 'typescript') { -%>
+    .pipe(insert.prepend(`import * as angular from 'angular';`))
+<%   } else if (js === 'babel') { -%>
     .pipe(insert.prepend(`import angular from 'angular';`))
+<%   } else { -%>
+    .pipe(insert.prepend(`var angular = require('angular');`))
+<%   } -%>
 <% } -%>
     .pipe(gulp.dest(conf.path.tmp()));
 }
