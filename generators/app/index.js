@@ -11,8 +11,6 @@ module.exports = fountain.Base.extend({
     pkg() {
       const pkg = {
         devDependencies: {
-          'babel-core': '^6.2.0',
-          'babel-preset-es2015': '^6.1.18',
           'del': '^2.0.2',
           'gulp': 'gulpjs/gulp#4.0',
           'gulp-autoprefixer': '^3.1.0',
@@ -51,6 +49,22 @@ module.exports = fountain.Base.extend({
         _.merge(pkg, {
           devDependencies: {
             'gulp-sass': '^2.0.4'
+          }
+        });
+      }
+
+      if (this.props.js === 'babel' || this.props.js === 'js' && this.props.framework === 'react') {
+        _.merge(pkg, {
+          devDependencies: {
+            'babel-core': '^6.2.0'
+          }
+        });
+      }
+
+      if (this.props.js === 'babel') {
+        _.merge(pkg, {
+          devDependencies: {
+            'babel-preset-es2015': '^6.2.0'
           }
         });
       }
