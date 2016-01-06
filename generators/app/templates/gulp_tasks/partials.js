@@ -16,7 +16,11 @@ function partials() {
       spare: true,
       quotes: true
     }))
-    .pipe(angularTemplatecache('templateCacheHtml.<%- js === 'typescript' ? 'ts' : 'js' %>', {
+<% if (js === 'typescript' && modules !== 'inject') { -%>
+    .pipe(angularTemplatecache('templateCacheHtml.ts', {
+<% } else { -%>
+    .pipe(angularTemplatecache('templateCacheHtml.js', {
+<% } -%>
       module: conf.ngModule,
 <% if (modules !== 'systemjs') { -%>
       root: 'app'
