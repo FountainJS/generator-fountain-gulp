@@ -12,7 +12,8 @@ module.exports = fountain.Base.extend({
         devDependencies: {
           'del': '^2.0.2',
           'gulp': 'gulpjs/gulp#4.0',
-          'gulp-hub': 'frankwallis/gulp-hub#registry-init'
+          'gulp-hub': 'frankwallis/gulp-hub#registry-init',
+          'gulp-filter': '^3.0.1'
         },
         scripts: {
           build: 'gulp',
@@ -25,7 +26,6 @@ module.exports = fountain.Base.extend({
           'gulp-useref': '^3.0.3',
           'gulp-postcss': '^6.0.1',
           'autoprefixer': '^6.2.3',
-          'gulp-filter': '^3.0.1',
           'gulp-rev': '^6.0.1',
           'gulp-rev-replace': '^0.4.2',
           'gulp-sourcemaps': '^1.6.0',
