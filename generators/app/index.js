@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const fountain = require('fountain-generator');
 const conf = require('./conf');
 
@@ -13,20 +12,7 @@ module.exports = fountain.Base.extend({
         devDependencies: {
           'del': '^2.0.2',
           'gulp': 'gulpjs/gulp#4.0',
-          'gulp-autoprefixer': '^3.1.0',
-          'gulp-filter': '^3.0.1',
-          'gulp-flatten': '^0.2.0',
-          'gulp-hub': 'frankwallis/gulp-hub#registry-init',
-          'gulp-minify-css': '^1.2.1',
-          'gulp-minify-html': '^1.0.4',
-          'gulp-replace': '^0.5.4',
-          'gulp-rev': '^6.0.1',
-          'gulp-rev-replace': '^0.4.2',
-          'gulp-sourcemaps': '^1.6.0',
-          'gulp-uglify': '^1.4.2',
-          'gulp-useref': '^3.0.3',
-          'gulp-util': '^3.0.7',
-          'uglify-save-license': '^0.4.1'
+          'gulp-hub': 'frankwallis/gulp-hub#registry-init'
         },
         scripts: {
           build: 'gulp',
@@ -34,38 +20,53 @@ module.exports = fountain.Base.extend({
         }
       };
 
+      if (this.props.modules !== 'webpack') {
+        Object.assign(pkg.devDependencies, {
+          'gulp-useref': '^3.0.3',
+          'gulp-postcss': '^6.0.1',
+          'autoprefixer': '^6.2.3',
+          'gulp-filter': '^3.0.1',
+          'gulp-rev': '^6.0.1',
+          'gulp-rev-replace': '^0.4.2',
+          'gulp-sourcemaps': '^1.6.0',
+          'gulp-uglify': '^1.4.2',
+          'uglify-save-license': '^0.4.1',
+          'gulp-cssnano': '^2.1.0',
+          'gulp-htmlmin': '^1.3.0',
+          'gulp-util': '^3.0.7'
+        });
+      }
+
       if (this.props.framework === 'angular1') {
-        _.merge(pkg, {
-          devDependencies: {
-            'gulp-angular-filesort': '^1.1.1',
-            'gulp-angular-templatecache': '^1.8.0',
-            'gulp-ng-annotate': '^1.1.0',
-            'gulp-insert': '^0.5.0'
-          }
+        Object.assign(pkg.devDependencies, {
+          'gulp-angular-filesort': '^1.1.1',
+          'gulp-angular-templatecache': '^1.8.0',
+          'gulp-ng-annotate': '^1.1.0',
+          'gulp-insert': '^0.5.0'
         });
       }
 
       if (this.props.css === 'scss') {
-        _.merge(pkg, {
-          devDependencies: {
-            'gulp-sass': '^2.0.4'
-          }
+        Object.assign(pkg.devDependencies, {
+          'gulp-sass': '^2.1.1'
+        });
+      }
+
+      if (this.props.css === 'less') {
+        Object.assign(pkg.devDependencies, {
+          'gulp-less': '^3.0.5'
         });
       }
 
       if (this.props.js === 'babel' || this.props.js === 'js' && this.props.framework === 'react') {
-        _.merge(pkg, {
-          devDependencies: {
-            'babel-core': '^6.2.0'
-          }
+        Object.assign(pkg.devDependencies, {
+          'babel-core': '^6.2.0'
         });
       }
 
       if (this.props.js === 'babel') {
-        _.merge(pkg, {
-          devDependencies: {
-            'babel-preset-es2015': '^6.2.0'
-          }
+        Object.assign(pkg.devDependencies, {
+          'babel-preset-es2015': '^6.2.0'
         });
       }
 

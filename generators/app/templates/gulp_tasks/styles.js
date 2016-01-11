@@ -4,28 +4,31 @@ const sourcemaps = require('gulp-sourcemaps');
 <% if (css == 'scss') { -%>
 const sass = require('gulp-sass');
 <% } -%>
-const autoprefixer = require('gulp-autoprefixer');
+<% if (css == 'less') { -%>
+const less = require('gulp-less');
+<% } -%>
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 
 const conf = require('../conf/gulp.conf');
 
 gulp.task('styles', styles);
 
-<% if (css !== 'css') { -%>
 function styles() {
+<% if (css == 'css') { -%>
+  return gulp.src(conf.path.src('**/*.css'))
+<% } else { -%>
   return gulp.src(conf.path.src('index.<%- css %>'))
+<% } -%>
     .pipe(sourcemaps.init())
 <%   if (css == 'scss') { -%>
-    .pipe(sass({ style: 'expanded' })).on('error', conf.errorHandler('Sass'))
+    .pipe(sass({ outputStyle: 'expanded' })).on('error', conf.errorHandler('Sass'))
 <%   } -%>
-    .pipe(autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
+<%   if (css == 'less') { -%>
+    .pipe(less({ compress: false })).on('error', conf.errorHandler('Less'))
+<%   } -%>
+    .pipe(postcss([autoprefixer()])).on('error', conf.errorHandler('Autoprefixer'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(conf.path.tmp()))
     .pipe(browserSync.stream());
 }
-<% } else { -%>
-function styles(done) {
-  $.util.log('Nothing to do for CSS');
-  browserSync.reload('*.css');
-  done();
-}
-<% } -%>
