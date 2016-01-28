@@ -87,6 +87,9 @@ module.exports = fountain.Base.extend({
   },
 
   composing() {
+    this.composeWith(`fountain-gulp:git`, {}, {
+      local: require.resolve(`../git`)
+    });
     this.composeWith('fountain-browsersync', { options: this.props }, {
       local: require.resolve('generator-fountain-browsersync/generators/app')
     });
