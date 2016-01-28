@@ -82,7 +82,7 @@ module.exports = fountain.Base.extend({
     },
 
     babel() {
-      this.mergeJson('.babelrc', { presets: ['es2015'] });
+      this.mergeJson('.babelrc', {presets: ['es2015']});
     }
   },
 
@@ -90,20 +90,20 @@ module.exports = fountain.Base.extend({
     this.composeWith(`fountain-gulp:git`, {}, {
       local: require.resolve(`../git`)
     });
-    this.composeWith('fountain-browsersync', { options: this.props }, {
+    this.composeWith('fountain-browsersync', {options: this.props}, {
       local: require.resolve('generator-fountain-browsersync/generators/app')
     });
-    this.composeWith('fountain-karma', { options: this.props }, {
+    this.composeWith('fountain-karma', {options: this.props}, {
       local: require.resolve('generator-fountain-karma/generators/app')
     });
-    this.composeWith(`fountain-${this.props.modules}`, { options: this.props }, {
+    this.composeWith(`fountain-${this.props.modules}`, {options: this.props}, {
       local: require.resolve(`generator-fountain-${this.props.modules}/generators/app`)
     });
-    this.composeWith('fountain-eslint', { options: this.props }, {
+    this.composeWith('fountain-eslint', {options: this.props}, {
       local: require.resolve('generator-fountain-eslint/generators/app')
     });
     if (this.props.js === 'typescript') {
-      this.composeWith('fountain-tslint', { options: this.props }, {
+      this.composeWith('fountain-tslint', {options: this.props}, {
         local: require.resolve('generator-fountain-tslint/generators/app')
       });
     }

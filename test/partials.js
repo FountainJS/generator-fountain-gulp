@@ -11,7 +11,7 @@ describe('generator fountain gulp partials', () => {
 
   it('should prepend template cache with with angular module loading', function () {
     const getFile = () => this.context.copyTemplate['gulp_tasks/partials.js'];
-    TestUtils.call(this.context, 'writing', { framework: 'angular1' });
+    TestUtils.call(this.context, 'writing', {framework: 'angular1'});
     expect(getFile()).to.match(/insert\.prepend.*require\('angular'\)/);
   });
 });
