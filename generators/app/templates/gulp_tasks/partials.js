@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const minifyHtml = require('gulp-minify-html');
+const htmlmin = require('gulp-htmlmin');
 const angularTemplatecache = require('gulp-angular-templatecache');
 <% if (modules !== 'inject') { -%>
 const insert = require('gulp-insert');
@@ -11,11 +11,7 @@ gulp.task('partials', partials);
 
 function partials() {
   return gulp.src(conf.path.src('app/**/*.html'))
-    .pipe(minifyHtml({
-      empty: true,
-      spare: true,
-      quotes: true
-    }))
+    .pipe(htmlmin())
 <% if (js === 'typescript' && modules !== 'inject') { -%>
     .pipe(angularTemplatecache('templateCacheHtml.ts', {
 <% } else { -%>

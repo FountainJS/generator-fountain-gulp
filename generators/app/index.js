@@ -41,8 +41,9 @@ module.exports = fountain.Base.extend({
         Object.assign(pkg.devDependencies, {
           'gulp-angular-filesort': '^1.1.1',
           'gulp-angular-templatecache': '^1.8.0',
-          'gulp-ng-annotate': '^1.1.0',
-          'gulp-insert': '^0.5.0'
+          'gulp-htmlmin': '^1.3.0',
+          'gulp-insert': '^0.5.0',
+          'gulp-ng-annotate': '^1.1.0'
         });
       }
 
