@@ -32,9 +32,9 @@ function watch(done) {
 <% } -%>
   gulp.watch([
 <% if (css !== 'css') { -%>
-    path.join(conf.paths.src, '/app/**/*.<%- css %>'),
+    path.join(conf.paths.src, '**/*.<%- css %>'),
 <% } -%>
-    path.join(conf.paths.src, '/app/**/*.css')
+    path.join(conf.paths.src, '**/*.css')
   ], gulp.series('styles'));
 
 <% if (modules === 'inject') { -%>
