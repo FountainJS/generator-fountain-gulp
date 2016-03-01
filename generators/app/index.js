@@ -83,7 +83,7 @@ module.exports = fountain.Base.extend({
     },
 
     babel() {
-      if (this.props.js !== 'js') {
+      if (this.props.js === 'babel') {
         this.mergeJson('.babelrc', {presets: ['es2015']});
       }
     }
