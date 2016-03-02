@@ -2,6 +2,7 @@ const path = require('path');
 
 const gulp = require('gulp');
 const HubRegistry = require('gulp-hub');
+const browserSync = require('browser-sync');
 
 const conf = require('./conf/gulp.conf');
 
@@ -25,10 +26,13 @@ gulp.task('watch', watch);
 function watch(done) {
 <% if (modules === 'inject') { -%>
   gulp.watch([
-    path.join(conf.paths.src, '/*.html'),
+    path.join(conf.paths.src, 'index.html'),
     'bower.json'
   ], gulp.parallel('inject'));
 
+<% } -%>
+<% if (framework !== 'react') { -%>
+  gulp.watch(path.join(conf.paths.src, '**/*.html'), browserSync.reload);
 <% } -%>
   gulp.watch([
 <% if (css !== 'css') { -%>
@@ -38,7 +42,7 @@ function watch(done) {
   ], gulp.series('styles'));
 
 <% if (modules === 'inject') { -%>
-  gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('scripts', 'inject'));
+  gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('inject'));
 
 <% } else if (modules === 'systemjs') { -%>
   gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('scripts'));
