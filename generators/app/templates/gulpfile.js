@@ -38,7 +38,7 @@ function watch(done) {
   ], gulp.series('styles'));
 
 <% if (modules === 'inject') { -%>
-  gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('scripts', 'inject'));
+  gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('inject'));
 
 <% } else if (modules === 'systemjs') { -%>
   gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('scripts'));
