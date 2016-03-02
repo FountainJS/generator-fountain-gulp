@@ -25,7 +25,7 @@ gulp.task('watch', watch);
 function watch(done) {
 <% if (modules === 'inject') { -%>
   gulp.watch([
-    path.join(conf.paths.src, '/*.html'),
+    path.join(conf.paths.src, '**/*.html'),
     'bower.json'
   ], gulp.parallel('inject'));
 
