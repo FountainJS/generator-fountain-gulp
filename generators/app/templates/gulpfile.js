@@ -34,6 +34,10 @@ function watch(done) {
 <% if (framework !== 'react') { -%>
   gulp.watch(path.join(conf.paths.src, '**/*.html'), browserSync.reload);
 <% } -%>
+<% } else if (modules === 'webpack') {-%>
+  gulp.watch(path.join(conf.paths.tmp, 'index.html'), browserSync.reload);
+<% } -%>
+
 <% if (modules !== 'webpack') { -%>
   gulp.watch([
 <% if (css !== 'css') { -%>
