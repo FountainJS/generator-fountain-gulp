@@ -32,6 +32,9 @@ function watch(done) {
 
 <% } -%>
 <% if (framework !== 'react') { -%>
+<% if (modules !== 'systemjs') { -%>
+  gulp.watch(path.join(conf.paths.src, 'app/**/*.html'), browserSync.reload);
+<% } else { -%>
   gulp.watch(path.join(conf.paths.src, '**/*.html'), browserSync.reload);
 <% } -%>
 <% } else if (modules === 'webpack') {-%>
