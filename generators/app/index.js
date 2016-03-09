@@ -59,18 +59,6 @@ module.exports = fountain.Base.extend({
         });
       }
 
-      if (this.props.js === 'babel' || this.props.js === 'js' && this.props.framework === 'react') {
-        Object.assign(pkg.devDependencies, {
-          'babel-core': '^6.2.0'
-        });
-      }
-
-      if (this.props.js === 'babel') {
-        Object.assign(pkg.devDependencies, {
-          'babel-preset-es2015': '^6.2.0'
-        });
-      }
-
       this.mergeJson('package.json', pkg);
     },
 
