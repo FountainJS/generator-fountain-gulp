@@ -29,9 +29,9 @@ function build() {
   };
 
 <% } -%>
-  const htmlFilter = filter('*.html', { restore: true });
-  const jsFilter = filter('**/*.js', { restore: true });
-  const cssFilter = filter('**/*.css', { restore: true });
+  const htmlFilter = filter('*.html', {restore: true});
+  const jsFilter = filter('**/*.js', {restore: true});
+  const cssFilter = filter('**/*.css', {restore: true});
 
   return gulp.src(conf.path.tmp('/index.html'))
 <% if (framework === 'angular1' && modules === 'inject') { -%>
@@ -43,7 +43,7 @@ function build() {
 <% if (framework === 'angular1') { -%>
     .pipe(ngAnnotate())
 <% } -%>
-    .pipe(uglify({ preserveComments: uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
+    .pipe(uglify({preserveComments: uglifySaveLicense})).on('error', conf.errorHandler('Uglify'))
     .pipe(rev())
     .pipe(sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
