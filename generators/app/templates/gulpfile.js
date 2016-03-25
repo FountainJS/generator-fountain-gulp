@@ -42,7 +42,6 @@ function watch(done) {
 <% } else { -%>
   gulp.watch(path.join(conf.paths.src, 'index.html'), browserSync.reload);
 <% } -%>
-
 <% if (modules !== 'webpack') { -%>
   gulp.watch([
 <% if (css !== 'css') { -%>
@@ -51,13 +50,10 @@ function watch(done) {
     path.join(conf.paths.src, '**/*.css')
   ], gulp.series('styles'));
 <% } -%>
-
 <% if (modules === 'inject') { -%>
   gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('inject'));
-
 <% } else if (modules === 'systemjs') { -%>
   gulp.watch(path.join(conf.paths.src, '/app/**/*.<%- extensions.js %>'), gulp.series('scripts'));
-
 <% } -%>
   done();
 }
