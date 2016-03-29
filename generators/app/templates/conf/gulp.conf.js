@@ -35,15 +35,6 @@ for (let pathName in exports.paths) {
   }
 }
 
-if (process.env.CI === 'true') {
-  exports.paths = {
-    src: 'testGulpTasks/fixture/src',
-    dist: 'testGulpTasks/build/dist',
-    tmp: 'testGulpTasks/build/.tmp',
-    e2e: 'testGulpTasks/fixture/e2e'
-  };
-}
-
 /**
  *  Common implementation for an error handler of a Gulp plugin
  */
