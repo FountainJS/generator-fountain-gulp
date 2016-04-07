@@ -32,10 +32,8 @@ module.exports = function gulpfileConf(generatorProps) {
 
   props.gulpFiles = [
     'gulp_tasks/misc.js',
-    'gulp_tasks/styles.js',
     'gulp_tasks/browsersync.js',
-    'gulp_tasks/karma.js',
-    'gulp_tasks/protractor.js'
+    'gulp_tasks/karma.js'
   ];
 
   if (props.modules === 'inject') {
@@ -47,7 +45,8 @@ module.exports = function gulpfileConf(generatorProps) {
   } else {
     props.gulpFiles.push(
       'gulp_tasks/build.js',
-      'gulp_tasks/scripts.js'
+      'gulp_tasks/scripts.js',
+      'gulp_tasks/styles.js'
     );
   }
 
