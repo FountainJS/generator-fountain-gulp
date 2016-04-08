@@ -7,8 +7,8 @@ const sass = require('gulp-sass');
 <% if (css == 'less') { -%>
 const less = require('gulp-less');
 <% } -%>
-var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
 
 const conf = require('../conf/gulp.conf');
 
@@ -22,10 +22,10 @@ function styles() {
 <% } -%>
     .pipe(sourcemaps.init())
 <%   if (css == 'scss') { -%>
-    .pipe(sass({ outputStyle: 'expanded' })).on('error', conf.errorHandler('Sass'))
+    .pipe(sass({outputStyle: 'expanded'})).on('error', conf.errorHandler('Sass'))
 <%   } -%>
 <%   if (css == 'less') { -%>
-    .pipe(less({ compress: false })).on('error', conf.errorHandler('Less'))
+    .pipe(less({compress: false})).on('error', conf.errorHandler('Less'))
 <%   } -%>
     .pipe(postcss([autoprefixer()])).on('error', conf.errorHandler('Autoprefixer'))
     .pipe(sourcemaps.write())

@@ -21,7 +21,7 @@ gulp.task('build', build);
 
 function build() {
 <% if (framework === 'angular1' && modules === 'inject') { -%>
-  const partialsInjectFile = gulp.src(conf.path.tmp('templateCacheHtml.js'), { read: false });
+  const partialsInjectFile = gulp.src(conf.path.tmp('templateCacheHtml.js'), {read: false});
   const partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',
     ignorePath: conf.paths.tmp,
