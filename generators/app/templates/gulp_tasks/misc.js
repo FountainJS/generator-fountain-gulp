@@ -10,7 +10,7 @@ gulp.task('clean', clean);
 gulp.task('other', other);
 
 function clean() {
-  return del([ conf.paths.dist, conf.paths.tmp ]);
+  return del([conf.paths.dist, conf.paths.tmp]);
 }
 
 function other() {
@@ -18,7 +18,7 @@ function other() {
 
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,<%- css %>}')
+    path.join(`!${conf.paths.src}`, '/**/*.{html,css,js,<%- css %>}')
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(conf.paths.dist));
