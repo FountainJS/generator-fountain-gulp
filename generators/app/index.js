@@ -13,7 +13,8 @@ module.exports = fountain.Base.extend({
           'del': '^2.0.2',
           'gulp': 'gulpjs/gulp#4.0',
           'gulp-hub': 'frankwallis/gulp-hub#registry-init',
-          'gulp-filter': '^3.0.1'
+          'gulp-filter': '^3.0.1',
+          'gulp-util': '^3.0.7'
         },
         scripts: {
           build: 'gulp',
@@ -32,8 +33,7 @@ module.exports = fountain.Base.extend({
           'gulp-uglify': '^1.4.2',
           'uglify-save-license': '^0.4.1',
           'gulp-cssnano': '^2.1.0',
-          'gulp-htmlmin': '^1.3.0',
-          'gulp-util': '^3.0.7'
+          'gulp-htmlmin': '^1.3.0'
         });
       }
 
