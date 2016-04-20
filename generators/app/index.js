@@ -13,7 +13,7 @@ module.exports = fountain.Base.extend({
           'del': '^2.0.2',
           'gulp': 'gulpjs/gulp#4.0',
           'gulp-hub': 'frankwallis/gulp-hub#registry-init',
-          'gulp-filter': '^3.0.1',
+          'gulp-filter': '^4.0.0',
           'gulp-util': '^3.0.7'
         },
         scripts: {
