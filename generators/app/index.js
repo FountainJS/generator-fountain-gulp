@@ -37,6 +37,12 @@ module.exports = fountain.Base.extend({
         });
       }
 
+      if (this.props.modules === 'systemjs') {
+        Object.assign(pkg.devDependencies, {
+          'gulp-rename': '^1.2.2'
+        });
+      }
+
       if (this.props.framework === 'angular1') {
         Object.assign(pkg.devDependencies, {
           'gulp-angular-filesort': '^1.1.1',
