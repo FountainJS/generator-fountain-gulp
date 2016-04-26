@@ -142,7 +142,7 @@ module.exports = fountain.Base.extend({
     }
   },
 
-  installing() {
+  install() {
     this.npmInstall();
   }
 });
