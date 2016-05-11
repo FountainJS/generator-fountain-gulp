@@ -30,34 +30,6 @@ function gulpTasksToString(tasks) {
 module.exports = function gulpfileConf(generatorProps) {
   const props = Object.assign({}, generatorProps);
 
-  props.gulpFiles = [
-    'gulp_tasks/misc.js',
-    'gulp_tasks/browsersync.js',
-    'gulp_tasks/karma.js'
-  ];
-
-  if (props.modules === 'inject') {
-    props.gulpFiles.push('gulp_tasks/inject.js');
-  }
-
-  if (props.modules === 'webpack') {
-    props.gulpFiles.push('gulp_tasks/webpack.js');
-  } else {
-    props.gulpFiles.push(
-      'gulp_tasks/build.js',
-      'gulp_tasks/scripts.js',
-      'gulp_tasks/styles.js'
-    );
-  }
-
-  if (props.modules === 'systemjs') {
-    props.gulpFiles.push('gulp_tasks/systemjs.js');
-  }
-
-  if (props.framework === 'angular1') {
-    props.gulpFiles.push('gulp_tasks/partials.js');
-  }
-
   if (props.modules === 'webpack') {
     props.buildTask = series(parallel('other', 'webpack:dist'));
   } else if (props.modules === 'inject') {
