@@ -2,10 +2,6 @@ const fountain = require('fountain-generator');
 const conf = require('./conf');
 
 module.exports = fountain.Base.extend({
-  prompting() {
-    this.fountainPrompting();
-  },
-
   configuring: {
     pkg() {
       const pkg = {
@@ -22,7 +18,7 @@ module.exports = fountain.Base.extend({
         }
       };
 
-      if (this.props.modules !== 'webpack') {
+      if (this.options.modules !== 'webpack') {
         Object.assign(pkg.devDependencies, {
           'gulp-useref': '^3.0.3',
           'gulp-postcss': '^6.0.1',
@@ -37,13 +33,13 @@ module.exports = fountain.Base.extend({
         });
       }
 
-      if (this.props.modules === 'systemjs') {
+      if (this.options.modules === 'systemjs') {
         Object.assign(pkg.devDependencies, {
           'gulp-rename': '^1.2.2'
         });
       }
 
-      if (this.props.framework === 'angular1') {
+      if (this.options.framework === 'angular1') {
         Object.assign(pkg.devDependencies, {
           'gulp-angular-filesort': '^1.1.1',
           'gulp-angular-templatecache': '^1.8.0',
@@ -53,13 +49,13 @@ module.exports = fountain.Base.extend({
         });
       }
 
-      if (this.props.css === 'scss') {
+      if (this.options.css === 'scss') {
         Object.assign(pkg.devDependencies, {
           'gulp-sass': '^2.1.1'
         });
       }
 
-      if (this.props.css === 'less') {
+      if (this.options.css === 'less') {
         Object.assign(pkg.devDependencies, {
           'gulp-less': '^3.0.5'
         });
@@ -72,12 +68,12 @@ module.exports = fountain.Base.extend({
       this.fs.copyTpl(
         this.templatePath('conf'),
         this.destinationPath('conf'),
-        this.props
+        this.options
       );
     },
 
     babel() {
-      if (this.props.js === 'babel') {
+      if (this.options.js === 'babel') {
         this.mergeJson('.babelrc', {presets: ['es2015']});
       }
     }
@@ -87,20 +83,20 @@ module.exports = fountain.Base.extend({
     this.composeWith(`fountain-gulp:git`, {}, {
       local: require.resolve(`../git`)
     });
-    this.composeWith('fountain-browsersync', {options: this.props}, {
+    this.composeWith('fountain-browsersync', {options: this.options}, {
       local: require.resolve('generator-fountain-browsersync/generators/app')
     });
-    this.composeWith('fountain-karma', {options: this.props}, {
+    this.composeWith('fountain-karma', {options: this.options}, {
       local: require.resolve('generator-fountain-karma/generators/app')
     });
-    this.composeWith(`fountain-${this.props.modules}`, {options: this.props}, {
-      local: require.resolve(`generator-fountain-${this.props.modules}/generators/app`)
+    this.composeWith(`fountain-${this.options.modules}`, {options: this.options}, {
+      local: require.resolve(`generator-fountain-${this.options.modules}/generators/app`)
     });
-    this.composeWith('fountain-eslint', {options: this.props}, {
+    this.composeWith('fountain-eslint', {options: this.options}, {
       local: require.resolve('generator-fountain-eslint/generators/app')
     });
-    if (this.props.js === 'typescript') {
-      this.composeWith('fountain-tslint', {options: this.props}, {
+    if (this.options.js === 'typescript') {
+      this.composeWith('fountain-tslint', {options: this.options}, {
         local: require.resolve('generator-fountain-tslint/generators/app')
       });
     }
@@ -110,34 +106,34 @@ module.exports = fountain.Base.extend({
     this.copyTemplate(
       'gulpfile.js',
       'gulpfile.js',
-      conf(this.props)
+      conf(this.options)
     );
 
-    if (this.props.modules !== 'webpack') {
+    if (this.options.modules !== 'webpack') {
       this.copyTemplate(
         'gulp_tasks/build.js',
         'gulp_tasks/build.js',
-        this.props
+        this.options
       );
 
       this.copyTemplate(
         'gulp_tasks/styles.js',
         'gulp_tasks/styles.js',
-        this.props
+        this.options
       );
     }
 
     this.copyTemplate(
       'gulp_tasks/misc.js',
       'gulp_tasks/misc.js',
-      this.props
+      this.options
     );
 
-    if (this.props.framework === 'angular1') {
+    if (this.options.framework === 'angular1') {
       this.copyTemplate(
         'gulp_tasks/partials.js',
         'gulp_tasks/partials.js',
-        this.props
+        this.options
       );
     }
   },
