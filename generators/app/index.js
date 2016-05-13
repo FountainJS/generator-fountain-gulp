@@ -13,8 +13,11 @@ module.exports = fountain.Base.extend({
           'gulp-util': '^3.0.7'
         },
         scripts: {
-          build: 'gulp',
-          serve: 'gulp serve'
+          'build': 'gulp',
+          'serve': 'gulp serve',
+          'serve:dist': 'gulp serve:dist',
+          'test': 'gulp test',
+          'test:auto': 'gulp test:auto'
         }
       };
 
