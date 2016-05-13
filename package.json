@@ -28,6 +28,7 @@
     "generator-fountain-systemjs": "^0.4.0",
     "generator-fountain-tslint": "^0.4.0",
     "generator-fountain-webpack": "^0.4.0",
+    "insight": "^0.8.2",
     "lodash": "^4.10.0"
   },
   "devDependencies": {
