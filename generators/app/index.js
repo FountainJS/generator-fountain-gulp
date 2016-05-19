@@ -7,8 +7,8 @@ module.exports = fountain.Base.extend({
       const pkg = {
         devDependencies: {
           'del': '^2.0.2',
-          'gulp': 'gulpjs/gulp#4.0',
-          'gulp-hub': 'frankwallis/gulp-hub#registry-init',
+          'gulp': 'gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb',
+          'gulp-hub': 'frankwallis/gulp-hub#d461b9c700df9010d0a8694e4af1fb96d9f38bf4',
           'gulp-filter': '^4.0.0',
           'gulp-util': '^3.0.7'
         },
