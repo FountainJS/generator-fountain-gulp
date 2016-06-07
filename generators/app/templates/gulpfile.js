@@ -49,9 +49,9 @@ function watch(done) {
   ], gulp.series('styles'));
 <% } -%>
 <% if (modules === 'inject') { -%>
-  gulp.watch(conf.path.src('/app/**/*.<%- extensions.js %>'), gulp.series('inject'));
+  gulp.watch(conf.path.src('**/*.<%- extensions.js %>'), gulp.series('inject'));
 <% } else if (modules === 'systemjs') { -%>
-  gulp.watch(conf.path.src('/app/**/*.<%- extensions.js %>'), gulp.series('scripts'));
+  gulp.watch(conf.path.src('**/*.<%- extensions.js %>'), gulp.series('scripts'));
 <% } -%>
   done();
 }
