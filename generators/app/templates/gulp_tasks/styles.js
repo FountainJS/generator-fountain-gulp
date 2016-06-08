@@ -7,7 +7,7 @@ const sass = require('gulp-sass');
 <% if (css == 'less') { -%>
 const less = require('gulp-less');
 <% } -%>
-<% if (css == 'stylus') { -%>
+<% if (css == 'styl') { -%>
 const stylus = require('gulp-stylus');
 <% } -%>
 const postcss = require('gulp-postcss');
@@ -30,7 +30,7 @@ function styles() {
 <%   if (css == 'less') { -%>
     .pipe(less({compress: false})).on('error', conf.errorHandler('Less'))
 <%   } -%>
-<%   if (css == 'stylus') { -%>
+<%   if (css == 'styl') { -%>
     .pipe(stylus({compress: false})).on('error', conf.errorHandler('Stylus'))
 <%   } -%>
     .pipe(postcss([autoprefixer()])).on('error', conf.errorHandler('Autoprefixer'))
