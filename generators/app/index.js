@@ -64,6 +64,12 @@ module.exports = fountain.Base.extend({
         });
       }
 
+      if (this.options.css === 'styl') {
+        Object.assign(pkg.devDependencies, {
+          'gulp-stylus': '^2.4.0'
+        });
+      }
+
       this.mergeJson('package.json', pkg);
     },
 
