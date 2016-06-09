@@ -21,6 +21,11 @@ gulp.task('serve:dist', gulp.series('default', 'browsersync:dist'));
 gulp.task('default', gulp.series('clean', 'build'));
 gulp.task('watch', watch);
 
+function reloadBrowserSync(cb) {
+  browserSync.reload();
+  cb();
+}
+
 function watch(done) {
 <% if (modules === 'inject') { -%>
   gulp.watch([
@@ -30,21 +35,21 @@ function watch(done) {
 
 <% } -%>
 <% if (framework !== 'react') { -%>
-<% if (modules !== 'systemjs') { -%>
-  gulp.watch(conf.path.src('app/**/*.html'), browserSync.reload);
-<% } else { -%>
-  gulp.watch(conf.path.src('**/*.html'), browserSync.reload);
-<% } -%>
+<%   if (modules !== 'systemjs') { -%>
+  gulp.watch(conf.path.src('app/**/*.html'), reloadBrowserSync);
+<%   } else { -%>
+  gulp.watch(conf.path.src('**/*.html'), reloadBrowserSync);
+<%   } -%>
 <% } else if (modules === 'webpack') {-%>
-  gulp.watch(conf.path.tmp('index.html'), browserSync.reload);
+  gulp.watch(conf.path.tmp('index.html'), reloadBrowserSync);
 <% } else { -%>
-  gulp.watch(conf.path.src('index.html'), browserSync.reload);
+  gulp.watch(conf.path.src('index.html'), reloadBrowserSync);
 <% } -%>
 <% if (modules !== 'webpack') { -%>
   gulp.watch([
-<% if (css !== 'css') { -%>
+<%   if (css !== 'css') { -%>
     conf.path.src('**/*.<%- css %>'),
-<% } -%>
+<%   } -%>
     conf.path.src('**/*.css')
   ], gulp.series('styles'));
 <% } -%>
