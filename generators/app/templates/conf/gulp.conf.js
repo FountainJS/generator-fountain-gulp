@@ -19,9 +19,9 @@ exports.ngModule = 'app';
  *  The main paths of your project handle these with care
  */
 exports.paths = {
-  src: 'src',
-  dist: 'dist',
-  tmp: '.tmp',
+  src: 'src<% if (sample === 'jhipster') { -%>/main/webapp<% } -%>',
+  dist: '<% if (sample === 'jhipster') { -%>src/main/<% } -%>dist',
+  tmp: '<% if (sample === 'jhipster') { -%>src/main/<% } -%>.tmp',
   e2e: 'e2e',
   tasks: 'gulp_tasks'
 };
