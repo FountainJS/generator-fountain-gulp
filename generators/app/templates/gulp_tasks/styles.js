@@ -10,13 +10,28 @@ const less = require('gulp-less');
 <% if (css == 'styl') { -%>
 const stylus = require('gulp-stylus');
 <% } -%>
+<% if (sample == 'jhipster' && modules === 'systemjs') { -%>
+const flatten = require('gulp-flatten');
+<% } -%>
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 
 const conf = require('../conf/gulp.conf');
 
+<% if (sample == 'jhipster' && modules === 'systemjs') { -%>
+gulp.task('styles', gulp.parallel(fonts, styles));
+<% } else { -%>
 gulp.task('styles', styles);
+<% } -%>
 
+<% if (sample == 'jhipster' && modules === 'systemjs') { -%>
+function fonts() {
+  return gulp.src('jspm_packages/github/twbs/**/dist/fonts/*.{ttf,woff,woff2,eof,svg}')
+    .pipe(flatten())
+    .pipe(gulp.dest(conf.path.dist('fonts')));
+}
+
+<% } -%>
 function styles() {
 <% if (css == 'css') { -%>
   return gulp.src(conf.path.src('**/*.css'))

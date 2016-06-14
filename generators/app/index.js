@@ -70,6 +70,12 @@ module.exports = fountain.Base.extend({
         });
       }
 
+      if (this.options.sample === 'jhipster' && this.options.modules === 'systemjs') {
+        Object.assign(pkg.devDependencies, {
+          'gulp-flatten': '^0.2.0'
+        });
+      }
+
       this.mergeJson('package.json', pkg);
     },
 

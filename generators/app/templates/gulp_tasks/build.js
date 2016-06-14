@@ -14,6 +14,9 @@ const inject = require('gulp-inject');
 <% if (framework === 'angular1') { -%>
 const ngAnnotate = require('gulp-ng-annotate');
 <% } -%>
+<% if (sample === 'jhipster' && modules === 'systemjs') { -%>
+const replace = require('gulp-replace');
+<% } -%>
 
 const conf = require('../conf/gulp.conf');
 
@@ -39,6 +42,9 @@ function build() {
 <% } -%>
     .pipe(useref())
     .pipe(jsFilter)
+<% if (sample === 'jhipster' && modules === 'systemjs') { -%>
+    .pipe(replace(/jspm_packages\/github\/twbs\/bootstrap@[0-9].[0-9].[0-9]\/dist\/fonts/g, 'fonts'))
+<% } -%>
     .pipe(sourcemaps.init())
 <% if (framework === 'angular1') { -%>
     .pipe(ngAnnotate())
