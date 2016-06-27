@@ -34,7 +34,7 @@ module.exports = function gulpfileConf(generatorOptions) {
     options.buildTask = series(parallel('other', 'webpack:dist'));
   } else if (options.modules === 'inject') {
     options.buildTask = series(parallel('inject', 'other'), 'build');
-  } else if (options.modules === 'systemjs') {
+  } else {
     options.buildTask = series(parallel('systemjs', 'systemjs:html', 'styles', 'other'), 'build');
   }
 
@@ -46,7 +46,7 @@ module.exports = function gulpfileConf(generatorOptions) {
     options.serveTask = series('inject', 'watch', 'browsersync');
   } else if (options.modules === 'webpack') {
     options.serveTask = series('webpack:watch', 'watch', 'browsersync');
-  } else if (options.modules === 'systemjs') {
+  } else {
     options.serveTask = series(parallel('scripts', 'styles'), 'watch', 'browsersync');
   }
 
