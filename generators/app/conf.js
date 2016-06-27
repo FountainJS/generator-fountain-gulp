@@ -43,11 +43,11 @@ module.exports = function gulpfileConf(generatorOptions) {
   }
 
   if (options.modules === 'inject') {
-    options.serveTask = series('inject', 'watch', 'browsersync');
+    options.serveTask = series('clean', 'inject', 'watch', 'browsersync');
   } else if (options.modules === 'webpack') {
-    options.serveTask = series('webpack:watch', 'watch', 'browsersync');
+    options.serveTask = series('clean', 'webpack:watch', 'watch', 'browsersync');
   } else {
-    options.serveTask = series(parallel('scripts', 'styles'), 'watch', 'browsersync');
+    options.serveTask = series('clean', parallel('scripts', 'styles'), 'watch', 'browsersync');
   }
 
   if (options.modules === 'inject') {
