@@ -61,6 +61,28 @@ test('Configuring package.json with angular2/webpack/scss', t => {
   t.deepEqual(context.mergeJson['package.json'], expected);
 });
 
+test('Configuring package.json with angular2/systemjs/scss', t => {
+  const expected = _.mergeWith({}, pkg, {
+    devDependencies: {
+      'gulp-sass': '^2.1.1',
+      'gulp-inline-ng2-template': '^2.0.4',
+      'gulp-useref': '^3.0.3',
+      'gulp-postcss': '^6.0.1',
+      'autoprefixer': '^6.2.3',
+      'gulp-rev': '^6.0.1',
+      'gulp-rev-replace': '^0.4.2',
+      'gulp-sourcemaps': '^1.6.0',
+      'gulp-uglify': '^1.4.2',
+      'uglify-save-license': '^0.4.1',
+      'gulp-cssnano': '^2.1.0',
+      'gulp-htmlmin': '^1.3.0',
+      'gulp-rename': '^1.2.2'
+    }
+  });
+  TestUtils.call(context, 'configuring.pkg', {framework: 'angular2', modules: 'systemjs', css: 'scss'});
+  t.deepEqual(context.mergeJson['package.json'], expected);
+});
+
 test('Configuring package.json with angular2/webpack/less', t => {
   const expected = _.mergeWith({}, pkg, {
     devDependencies: {'gulp-less': '^3.0.5'}
