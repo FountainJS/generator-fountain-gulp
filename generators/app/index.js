@@ -52,6 +52,12 @@ module.exports = fountain.Base.extend({
         });
       }
 
+      if (this.options.framework === 'angular2' && this.options.modules === 'systemjs') {
+        Object.assign(pkg.devDependencies, {
+          'gulp-inline-ng2-template': '^2.0.4'
+        });
+      }
+
       if (this.options.css === 'scss') {
         Object.assign(pkg.devDependencies, {
           'gulp-sass': '^2.1.1'
