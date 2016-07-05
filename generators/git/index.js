@@ -9,7 +9,7 @@ module.exports = fountain.Base.extend({
       this.destinationPath('.gitattributes')
     );
 
-    this.fs.copy(
+    this.copyTemplate(
       this.templatePath('gitignore'),
       this.destinationPath('.gitignore')
     );
