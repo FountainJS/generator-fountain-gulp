@@ -2,5 +2,9 @@
 coverage/
 dist/
 node_modules/
+<% if (modules === 'systemjs') { -%>
 jspm_packages/
+<% } -%>
+<% if (modules === 'inject') { -%>
 bower_components/
+<% } -%>
