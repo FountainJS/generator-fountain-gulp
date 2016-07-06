@@ -28,7 +28,7 @@ function other() {
 
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
-    path.join(`!${conf.paths.src}`, '/**/*.{html,css,js,<%- css %>}')
+    path.join(`!${conf.paths.src}`, '/**/*.{html,css,js,ts,<%- css %>}')
   ])
     .pipe(fileFilter)
 <% if (modules === 'systemjs') { -%>
