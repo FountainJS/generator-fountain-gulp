@@ -140,11 +140,16 @@ module.exports = fountain.Base.extend({
         this.options
       );
     }
+    const extensions = this.getExtensions(this.options);
+    const ignored = [this.options.css, extensions.js];
+    if (this.options.framework !== 'react') {
+      ignored.push('html');
+    }
 
     this.copyTemplate(
       'gulp_tasks/misc.js',
       'gulp_tasks/misc.js',
-      this.options
+      Object.assign({}, this.options, {ignored: ignored.join(',')})
     );
 
     if (this.options.framework === 'angular1') {
