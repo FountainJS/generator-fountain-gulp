@@ -38,7 +38,7 @@ module.exports = function gulpfileConf(generatorOptions) {
     options.buildTask = series(parallel('systemjs', 'systemjs:html', 'styles', 'other'), 'build');
   }
 
-  if (options.framework === 'angular1') {
+  if (options.framework === 'angular1' && options.modules !== 'webpack') {
     options.buildTask.unshift('partials');
   }
 

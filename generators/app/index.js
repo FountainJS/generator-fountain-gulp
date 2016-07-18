@@ -152,7 +152,7 @@ module.exports = fountain.Base.extend({
       Object.assign({}, this.options, {ignored: ignored.join(',')})
     );
 
-    if (this.options.framework === 'angular1') {
+    if (this.options.framework === 'angular1' && this.options.modules !== 'webpack') {
       this.copyTemplate(
         'gulp_tasks/partials.js',
         'gulp_tasks/partials.js',
