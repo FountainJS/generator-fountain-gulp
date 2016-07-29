@@ -19,7 +19,7 @@ test('gulpfileConf with angular1/webpack', t => {
   const expected = {
     modules: 'webpack',
     framework: 'angular1',
-    buildTask: `gulp.series('partials', gulp.parallel('other', 'webpack:dist'))`,
+    buildTask: `gulp.series(gulp.parallel('other', 'webpack:dist'))`,
     serveTask: `gulp.series('webpack:watch', 'watch', 'browsersync')`,
     testTask: `gulp.series('karma:single-run')`,
     testAutoTask: `gulp.series('karma:auto-run')`

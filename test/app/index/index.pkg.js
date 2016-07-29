@@ -53,6 +53,19 @@ test('Configuring package.json with angular1/systemjs/css', t => {
   t.deepEqual(context.mergeJson['package.json'], expected);
 });
 
+test('Configuring package.json with angular1/webpack/css', t => {
+  const expected = _.mergeWith({}, pkg, {
+    devDependencies: {
+      'gulp-angular-filesort': '^1.1.1',
+      'gulp-htmlmin': '^1.3.0',
+      'gulp-insert': '^0.5.0',
+      'gulp-ng-annotate': '^1.1.0'
+    }
+  });
+  TestUtils.call(context, 'configuring.pkg', {framework: 'angular1', modules: 'webpack', css: 'css'});
+  t.deepEqual(context.mergeJson['package.json'], expected);
+});
+
 test('Configuring package.json with angular2/webpack/scss', t => {
   const expected = _.mergeWith({}, pkg, {
     devDependencies: {'gulp-sass': '^2.1.1'}
