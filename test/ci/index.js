@@ -24,21 +24,21 @@ test('Call this.fs.copy twice for Jenkins', () => {
   expect(spy1).to.have.been.called.twice();
 });
 
-test('Call this.fs.copy twice for CircleCi', () => {
+test('Call this.fs.copy once for CircleCi', () => {
   context.options.ci = ['circleci'];
   const spy1 = chai.spy.on(context.fs, 'copy');
   TestUtils.call(context, 'writing');
   expect(spy1).to.have.been.called.once();
 });
 
-test('Call this.fs.copy twice for Travis', () => {
+test('Call this.fs.copy once for Travis', () => {
   context.options.ci = ['travis'];
   const spy1 = chai.spy.on(context.fs, 'copy');
   TestUtils.call(context, 'writing');
   expect(spy1).to.have.been.called.once();
 });
 
-test('Call this.fs.copy twice for Wercker', () => {
+test('Call this.fs.copy once for Wercker', () => {
   context.options.ci = ['wercker'];
   const spy1 = chai.spy.on(context.fs, 'copy');
   TestUtils.call(context, 'writing');
