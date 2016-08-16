@@ -13,14 +13,14 @@ test.before(() => {
   require('../../../generators/app/index');
 });
 
-test('Call this.composeWith 6 times', () => {
-  const spy = chai.spy.on(context, 'composeWith');
-  TestUtils.call(context, 'composing', {js: 'babel'});
-  expect(spy).to.have.been.called.exactly(6);
-});
-
 test('Call this.composeWith 7 times', () => {
   const spy = chai.spy.on(context, 'composeWith');
-  TestUtils.call(context, 'composing', {js: 'typescript'});
+  TestUtils.call(context, 'composing', {js: 'babel'});
   expect(spy).to.have.been.called.exactly(7);
+});
+
+test('Call this.composeWith 8 times', () => {
+  const spy = chai.spy.on(context, 'composeWith');
+  TestUtils.call(context, 'composing', {js: 'typescript'});
+  expect(spy).to.have.been.called.exactly(8);
 });

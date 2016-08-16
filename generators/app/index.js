@@ -102,6 +102,9 @@ module.exports = fountain.Base.extend({
     this.composeWith(`fountain-gulp:git`, {options: {modules: this.options.modules}}, {
       local: require.resolve(`../git`)
     });
+    this.composeWith(`fountain-gulp:ci`, {options: {ci: this.options.ci}}, {
+      local: require.resolve(`../ci`)
+    });
     this.composeWith(`fountain-gulp:insight`, {options: this.options}, {
       local: require.resolve(`../insight`)
     });
