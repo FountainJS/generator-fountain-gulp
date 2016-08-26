@@ -12,9 +12,21 @@ test.beforeEach(() => {
   context.mergeJson['.babelrc'] = {};
 });
 
-test(`Configure .babelrc when js is 'babel'`, t => {
-  TestUtils.call(context, 'configuring.babel', {js: 'babel'});
-  t.deepEqual(context.mergeJson['.babelrc'], {presets: ['es2015']});
+test(`Configure .babelrc when js is 'babel' and modules is 'webpack'`, t => {
+  const expected = {
+    env: {
+      development: {presets: ['es2015']},
+      production: {presets: [['es2015', {modules: false}]]}
+    }
+  };
+  TestUtils.call(context, 'configuring.babel', {js: 'babel', modules: 'webpack'});
+  t.deepEqual(context.mergeJson['.babelrc'], expected);
+});
+
+test(`Configure .babelrc when js is 'babel' and modules is 'systemjs'`, t => {
+  const expected = {presets: ['es2015']};
+  TestUtils.call(context, 'configuring.babel', {js: 'babel', modules: 'systemjs'});
+  t.deepEqual(context.mergeJson['.babelrc'], expected);
 });
 
 test(`Configure .babelrc when js is 'js'`, t => {
