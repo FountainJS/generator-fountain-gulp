@@ -93,7 +93,20 @@ module.exports = fountain.Base.extend({
 
     babel() {
       if (this.options.js === 'babel') {
-        this.mergeJson('.babelrc', {presets: ['es2015']});
+        if (this.options.modules === 'webpack') {
+          this.mergeJson('.babelrc', {
+            env: {
+              development: {presets: ['es2015']},
+              production: {
+                presets: [
+                  ['es2015', {modules: false}]
+                ]
+              }
+            }
+          });
+        } else {
+          this.mergeJson('.babelrc', {presets: ['es2015']});
+        }
       }
     }
   },
