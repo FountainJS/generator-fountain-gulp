@@ -34,7 +34,7 @@ function watch(done) {
   ], gulp.parallel('inject'));
 
 <% } -%>
-<% if (framework !== 'react') { -%>
+<% if (framework !== 'react' && modules !== 'webpack') { -%>
 <%   if (modules !== 'systemjs') { -%>
   gulp.watch(conf.path.src('app/**/*.html'), reloadBrowserSync);
 <%   } else { -%>
