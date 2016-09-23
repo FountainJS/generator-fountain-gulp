@@ -36,7 +36,7 @@ function watch(done) {
 <% } -%>
 <% if (framework !== 'react' && modules !== 'webpack') { -%>
 <%   if (modules !== 'systemjs') { -%>
-  gulp.watch(conf.path.src('app/**/*.html'), reloadBrowserSync);
+  gulp.watch(conf.path.src('app/**/*.html'), gulp.series('partials', reloadBrowserSync));
 <%   } else { -%>
   gulp.watch(conf.path.src('**/*.html'), reloadBrowserSync);
 <%   } -%>
