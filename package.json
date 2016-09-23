@@ -1,6 +1,6 @@
 {
   "name": "generator-fountain-gulp",
-  "version": "0.7.2",
+  "version": "1.0.0-rc1",
   "description": "Yeoman Fountain generator which handle the core Gulp config",
   "homepage": "http://fountainjs.io/",
   "repository": "fountainjs/generator-fountain-gulp",
@@ -20,14 +20,14 @@
     "cli"
   ],
   "dependencies": {
-    "fountain-generator": "^0.7.2",
-    "generator-fountain-browsersync": "^0.7.2",
-    "generator-fountain-eslint": "^0.7.2",
-    "generator-fountain-inject": "^0.7.2",
-    "generator-fountain-karma": "^0.7.2",
-    "generator-fountain-systemjs": "^0.7.2",
-    "generator-fountain-tslint": "^0.7.2",
-    "generator-fountain-webpack": "^0.7.2",
+    "fountain-generator": "^1.0.0-rc1",
+    "generator-fountain-browsersync": "^1.0.0-rc1",
+    "generator-fountain-eslint": "^1.0.0-rc1",
+    "generator-fountain-inject": "^1.0.0-rc1",
+    "generator-fountain-karma": "^1.0.0-rc1",
+    "generator-fountain-systemjs": "^1.0.0-rc1",
+    "generator-fountain-tslint": "^1.0.0-rc1",
+    "generator-fountain-webpack": "^1.0.0-rc1",
     "insight": "^0.8.2",
     "lodash": "^4.10.0"
   },
