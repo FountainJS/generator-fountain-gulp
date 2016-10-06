@@ -21,7 +21,7 @@ function other() {
 <% if (modules === 'systemjs') { -%>
   const jsonFilter = path => {
     if (path.extname === '.json') {
-      path.dirname = `src/${path.dirname}`;
+      path.dirname = `$(conf.paths.src)/${path.dirname}`;
     }
   };
 <% } -%>
