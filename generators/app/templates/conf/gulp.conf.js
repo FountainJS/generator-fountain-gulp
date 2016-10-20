@@ -26,6 +26,13 @@ exports.paths = {
   tasks: 'gulp_tasks'
 };
 
+/**
+* used on gulp dist
+*/
+exports.htmlmin = {
+    "ignoreCustomFragments": [/{{.*?}}/]
+}
+
 exports.path = {};
 for (const pathName in exports.paths) {
   if (exports.paths.hasOwnProperty(pathName)) {
