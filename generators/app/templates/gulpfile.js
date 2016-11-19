@@ -11,7 +11,7 @@ const hub = new HubRegistry([conf.path.tasks('*.js')]);
 gulp.registry(hub);
 
 <% if (modules === 'inject') { -%>
-gulp.task('inject', gulp.series(gulp.parallel('styles', 'scripts'), 'inject'));
+gulp.task('inject', gulp.series(gulp.parallel('other:serve', 'styles', 'scripts'), 'inject'));
 <% } -%>
 gulp.task('build', <%- buildTask %>);
 gulp.task('test', <%- testTask %>);
