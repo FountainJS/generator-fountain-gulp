@@ -30,8 +30,8 @@ exports.paths = {
 * used on gulp dist
 */
 exports.htmlmin = {
-    "ignoreCustomFragments": [/{{.*?}}/]
-}
+  ignoreCustomFragments: [/{{.*?}}/]
+};
 
 exports.path = {};
 for (const pathName in exports.paths) {
