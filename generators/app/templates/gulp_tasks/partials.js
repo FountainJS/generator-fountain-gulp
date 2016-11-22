@@ -21,7 +21,7 @@ function partials() {
 <% if (modules !== 'systemjs') { -%>
       root: 'app'
 <% } else { -%>
-      root: conf.paths.src + '/app'
+      root: `${conf.paths.src}/app`
 <% } -%>
     }))
 <% if (modules !== 'inject') { -%>
