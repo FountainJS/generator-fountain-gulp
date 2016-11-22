@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const filter = require('gulp-filter');
 const useref = require('gulp-useref');
+const lazypipe = require('lazypipe');
 const rev = require('gulp-rev');
 const revReplace = require('gulp-rev-replace');
 const uglify = require('gulp-uglify');
@@ -37,23 +38,20 @@ function build() {
 <% if (framework === 'angular1' && modules === 'inject') { -%>
     .pipe(inject(partialsInjectFile, partialsInjectOptions))
 <% } -%>
-    .pipe(useref())
+    .pipe(useref({}, lazypipe().pipe(sourcemaps.init, {loadMaps: true})))
     .pipe(jsFilter)
-    .pipe(sourcemaps.init())
 <% if (framework === 'angular1') { -%>
     .pipe(ngAnnotate())
 <% } -%>
     .pipe(uglify({preserveComments: uglifySaveLicense})).on('error', conf.errorHandler('Uglify'))
     .pipe(rev())
-    .pipe(sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
-    .pipe(sourcemaps.init())
     .pipe(cssnano())
     .pipe(rev())
-    .pipe(sourcemaps.write('maps'))
     .pipe(cssFilter.restore)
     .pipe(revReplace())
+    .pipe(sourcemaps.write('maps'))
     .pipe(htmlFilter)
     .pipe(htmlmin())
     .pipe(htmlFilter.restore)
