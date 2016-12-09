@@ -1,6 +1,6 @@
 {
   "name": "generator-fountain-gulp",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0-rc2",
   "description": "Yeoman Fountain generator which handle the core Gulp config",
   "homepage": "http://fountainjs.io/",
   "repository": "fountainjs/generator-fountain-gulp",
