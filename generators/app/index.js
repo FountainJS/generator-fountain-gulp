@@ -119,31 +119,21 @@ module.exports = fountain.Base.extend({
   },
 
   composing() {
-    this.composeWith(`fountain-gulp:git`, {options: {modules: this.options.modules}}, {
-      local: require.resolve(`../git`)
-    });
-    this.composeWith(`fountain-gulp:ci`, {options: {ci: this.options.ci}}, {
-      local: require.resolve(`../ci`)
-    });
-    this.composeWith(`fountain-gulp:insight`, {options: this.options}, {
-      local: require.resolve(`../insight`)
-    });
-    this.composeWith('fountain-browsersync', {options: this.options}, {
-      local: require.resolve('generator-fountain-browsersync/generators/app')
-    });
-    this.composeWith('fountain-karma', {options: this.options}, {
-      local: require.resolve('generator-fountain-karma/generators/app')
-    });
-    this.composeWith(`fountain-${this.options.modules}`, {options: this.options}, {
-      local: require.resolve(`generator-fountain-${this.options.modules}/generators/app`)
-    });
-    this.composeWith('fountain-eslint', {options: this.options}, {
-      local: require.resolve('generator-fountain-eslint/generators/app')
-    });
+    this.composeWith(require.resolve(`../git`), {modules: this.options.modules});
+
+    this.composeWith(require.resolve(`../ci`), {ci: this.options.ci});
+
+    this.composeWith(require.resolve(`../insight`), this.options);
+
+    this.composeWith(require.resolve('generator-fountain-browsersync/generators/app'), this.options);
+
+    this.composeWith(require.resolve('generator-fountain-karma/generators/app'), this.options);
+
+    this.composeWith(require.resolve(`generator-fountain-${this.options.modules}/generators/app`), this.options);
+
+    this.composeWith(require.resolve('generator-fountain-eslint/generators/app'), this.options);
     if (this.options.js === 'typescript') {
-      this.composeWith('fountain-tslint', {options: this.options}, {
-        local: require.resolve('generator-fountain-tslint/generators/app')
-      });
+      this.composeWith(require.resolve('generator-fountain-tslint/generators/app'), this.options);
     }
   },
 
