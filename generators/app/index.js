@@ -162,6 +162,9 @@ module.exports = fountain.Base.extend({
     if (this.options.framework !== 'react') {
       ignored.push('html');
     }
+    if (this.options.framework === 'vue') {
+      ignored.push('vue');
+    }
 
     this.copyTemplate(
       'gulp_tasks/misc.js',
