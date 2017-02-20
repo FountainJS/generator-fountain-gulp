@@ -35,8 +35,8 @@ exports.htmlmin = {
 
 exports.path = {};
 for (const pathName in exports.paths) {
-  if (exports.paths.hasOwnProperty(pathName)) {
-    exports.path[pathName] = function pathJoin() {
+  if (Object.prototype.hasOwnProperty.call(exports.paths, pathName)) {
+    exports.path[pathName] = function () {
       const pathValue = exports.paths[pathName];
       const funcArgs = Array.prototype.slice.call(arguments);
       const joinArgs = [pathValue].concat(funcArgs);
