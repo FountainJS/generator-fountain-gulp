@@ -1,3 +1,4 @@
+const path = require('path');
 const test = require('ava');
 const TestUtils = require('fountain-generator').TestUtils;
 
@@ -6,7 +7,7 @@ let context;
 test.before(() => {
   context = TestUtils.mock('app');
   require('../../../generators/app/index');
-  process.chdir('../../../');
+  process.chdir(path.resolve(__dirname, '../../../'));
 });
 
 test.beforeEach(() => {
