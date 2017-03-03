@@ -31,11 +31,11 @@ module.exports = function gulpfileConf(generatorOptions) {
   const options = Object.assign({}, generatorOptions);
 
   if (options.modules === 'webpack') {
-    options.buildTask = series(parallel('other', 'webpack:dist'));
+    options.buildTask = series(parallel('other:dist', 'webpack:dist'));
   } else if (options.modules === 'inject') {
-    options.buildTask = series(parallel('inject', 'other'), 'build');
+    options.buildTask = series(parallel('inject', 'other:dist'), 'build');
   } else {
-    options.buildTask = series(parallel('systemjs', 'systemjs:html', 'styles', 'other'), 'build');
+    options.buildTask = series(parallel('systemjs', 'systemjs:html', 'styles', 'other:dist'), 'build');
   }
 
   if (options.framework === 'angular1' && options.modules !== 'webpack') {

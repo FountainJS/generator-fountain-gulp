@@ -6,7 +6,7 @@ test('gulpfileConf with react/webpack', t => {
   const expected = {
     modules: 'webpack',
     framework: 'react',
-    buildTask: `gulp.series(gulp.parallel('other', 'webpack:dist'))`,
+    buildTask: `gulp.series(gulp.parallel('other:dist', 'webpack:dist'))`,
     serveTask: `gulp.series('webpack:watch', 'watch', 'browsersync')`,
     testTask: `gulp.series('karma:single-run')`,
     testAutoTask: `gulp.series('karma:auto-run')`
@@ -19,7 +19,7 @@ test('gulpfileConf with angular1/webpack', t => {
   const expected = {
     modules: 'webpack',
     framework: 'angular1',
-    buildTask: `gulp.series(gulp.parallel('other', 'webpack:dist'))`,
+    buildTask: `gulp.series(gulp.parallel('other:dist', 'webpack:dist'))`,
     serveTask: `gulp.series('webpack:watch', 'watch', 'browsersync')`,
     testTask: `gulp.series('karma:single-run')`,
     testAutoTask: `gulp.series('karma:auto-run')`
@@ -32,7 +32,7 @@ test('gulpfileConf with react/inject', t => {
   const expected = {
     modules: 'inject',
     framework: 'react',
-    buildTask: `gulp.series(gulp.parallel('inject', 'other'), 'build')`,
+    buildTask: `gulp.series(gulp.parallel('inject', 'other:dist'), 'build')`,
     serveTask: `gulp.series('inject', 'watch', 'browsersync')`,
     testTask: `gulp.series('scripts', 'karma:single-run')`,
     testAutoTask: `gulp.series('watch', 'karma:auto-run')`
@@ -45,7 +45,7 @@ test('gulpfileConf with react/systemjs', t => {
   const expected = {
     modules: 'systemjs',
     framework: 'react',
-    buildTask: `gulp.series(gulp.parallel('systemjs', 'systemjs:html', 'styles', 'other'), 'build')`,
+    buildTask: `gulp.series(gulp.parallel('systemjs', 'systemjs:html', 'styles', 'other:dist'), 'build')`,
     serveTask: `gulp.series(gulp.parallel('scripts', 'styles'), 'watch', 'browsersync')`,
     testTask: `gulp.series('karma:single-run')`,
     testAutoTask: `gulp.series('karma:auto-run')`
